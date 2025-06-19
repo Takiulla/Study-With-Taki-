@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <h1 class="title">Hello World! </h1>
+      <p id="currentTime"></p>
+      <script src="script.js"></script>
+  </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study With Taki - AI Learning Companion for Class 12 PCB</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--dark);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .subject-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .ai-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+        
+        .chat-bubble {
+            max-width: 80%;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 0.5rem 0;
+            position: relative;
+        }
+        
+        .user-bubble {
+            background-color: var(--primary);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+        
+        .ai-bubble {
+            background-color: #e2e8f0;
+            color: var(--dark);
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+        
+        .note-card {
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .note-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+            background: var(--secondary);
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(250, 204, 21, 0.3) 0%, rgba(250, 204, 21, 0) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 90%;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        .instagram-btn {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+        }
+        
+        .instagram-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="ai-avatar">T</div>
+                        <h1 class="ml-3 text-xl font-bold text-gray-900">Study With Taki</h1>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#features" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Features</a>
+                    <a href="#subjects" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Subjects</a>
+                    <a href="#notes" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">My Notes</a>
+                    <a href="#chat" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Ask Taki</a>
+                    <a href="https://www.instagram.com/studywithtaki00?igsh=MW5lOWVjbWZucG56bA==" target="_blank" class="instagram-btn px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                        <i class="ri-instagram-line mr-2"></i> Instagram
+                    </a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="ri-menu-line text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="gradient-bg text-white">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                    Your Personal <span class="highlight">AI Study Partner</span>
+                </h1>
+                <p class="mt-6 max-w-lg mx-auto text-xl">
+                    Taki helps Class 12 PCB students with doubt solving, note-taking, and smart summarization to boost your exam preparation.
+                </p>
+                <div class="mt-10 flex justify-center space-x-4">
+                    <a href="#chat" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-gray-50">
+                        Ask Taki Now <i class="ri-arrow-right-line ml-2"></i>
+                    </a>
+                    <a href="https://www.instagram.com/studywithtaki00?igsh=MW5lOWVjbWZucG56bA==" target="_blank" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700">
+                        <i class="ri-instagram-line mr-2"></i> Follow Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Features</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    How Taki Helps You Study Smarter
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    AI-powered tools designed specifically for Class 12 PCB students
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+                    <div class="relative">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                            <i class="ri-question-answer-line text-2xl"></i>
+                        </div>
+                        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Instant Doubt Solving</p>
+                        <p class="mt-2 ml-16 text-base text-gray-500">
+                            Stuck on a problem? Taki explains concepts in simple terms with diagrams and examples.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                            <i class="ri-book-mark-line text-2xl"></i>
+                        </div>
+                        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Smart Note-Taking</p>
+                        <p class="mt-2 ml-16 text-base text-gray-500">
+                            Organize notes by topic, add tags, and search instantly. Taki helps format your notes perfectly.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                            <i class="ri-file-list-2-line text-2xl"></i>
+                        </div>
+                        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Chapter Summaries</p>
+                        <p class="mt-2 ml-16 text-base text-gray-500">
+                            Get concise summaries of NCERT chapters with key points, formulas, and diagrams.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                            <i class="ri-flask-line text-2xl"></i>
+                        </div>
+                        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Practical Support</p>
+                        <p class="mt-2 ml-16 text-base text-gray-500">
+                            Step-by-step guidance for chemistry and biology practicals with safety tips.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                            <i class="ri-timer-line text-2xl"></i>
+                        </div>
+                        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Exam Preparation</p>
+                        <p class="mt-2 ml-16 text-base text-gray-500">
+                            Customized study plans, important questions, and last-minute revision notes.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                            <i class="ri-brain-line text-2xl"></i>
+                        </div>
+                        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Memory Techniques</p>
+                        <p class="mt-2 ml-16 text-base text-gray-500">
+                            Mnemonics and visualization methods to remember complex biological processes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subjects Section -->
+    <div id="subjects" class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Subjects</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Class 12 PCB Resources
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Comprehensive support for all your core subjects
+                </p>
+            </div>
+
+            <div class="mt-10 grid gap-8 md:grid-cols-3">
+                <!-- Physics Card -->
+                <div class="subject-card bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+                                <i class="ri-atom-line text-white text-2xl"></i>
+                            </div>
+                            <div class="ml-5 w-0 flex-1">
+                                <h3 class="text-lg font-medium text-gray-900">Physics</h3>
+                                <p class="mt-1 text-sm text-gray-500">Electrostatics to Optics</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 border-t border-gray-200 pt-5">
+                            <div class="flex justify-between">
+                                <span class="text-sm font-medium text-gray-500">Topics</span>
+                                <span class="text-sm font-medium text-gray-500">12 Chapters</span>
+                            </div>
+                            <div class="mt-2">
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="ri-check-line text-green-500 mr-2"></i>
+                                    Electrostatics
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500 mt-1">
+                                    <i class="ri-check-line text-green-500 mr-2"></i>
+                                    Current Electricity
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500 mt-1">
+                                    <i class="ri-check-line text-green-500 mr-2"></i>
+                                    Magnetic Effects
+                                </div>
+                                <button class="mt-4 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Explore Physics
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chemistry Card -->
+                <div class="subject-card bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                                <i class="ri-flask-line text-white text-2xl"></i>
+                            </div>
+                            <div class="ml-5 w-0 flex-1">
+                                <h3 class="text-lg font-medium text-gray-900">Chemistry</h3>
+                                <p class="mt-1 text-sm text-gray-500">Solutions to Biomolecules</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 border-t border-gray-200 pt-5">
+                            <div class="flex justify-between">
+                                <span class="text-sm font-medium text-gray-500">Topics</span>
+                                <span class="text-sm font-medium text-gray-500">16 Chapters</span>
+                            </div>
+                            <div class="mt-2">
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="ri-check-line text-green-500 mr-2"></i>
+                                    Solutions
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500 mt-1">
+                                    <i class="ri-check-line text-green-500 mr-2"></i>
+                                    Electrochemistry
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500 mt-1">
+                                    <i class="ri-check-line text-green-500 mr-2"></i>
+                                    Organic Chemistry
+                                </div>
+                                <button class="mt-4 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                    Explore Chemistry
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biology Card -->
+                <div class="subject-card bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3">
+                                <i class="ri-dna-line text-white text-2xl"></i>
+                            </div>
+                            <div class="ml-5 w-0 flex-1">
+                                <h3 class="text-lg font-medium text-gray-900">Biology</h3>
+                                <p class="mt-1 text-sm text-gray-500">Genetics to Biotechnology</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 border-t border-gray-200 pt-5">
+                            <div class="flex justify-between">
+                                <span class="text-sm font-medium text-gray-500">Topics</span>
+                                <span class="text-sm font-medium text-gray-500">16 Chapters</span>
+                            </div>
+                            <div class="mt-2">
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="ri-check-line text-green-500 mr-2"></i>
+                                    Reproduction
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500 mt-1">
+                                    <i class="ri-check-line text-green-500 mr-2"></i>
+                                    Genetics
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500 mt-1">
+                                    <i class="ri-check-line text-green-500 mr-2"></i>
+                                    Biotechnology
+                                </div>
+                                <button class="mt-4 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                                    Explore Biology
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                
